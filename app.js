@@ -7,29 +7,31 @@ const mongoose = require("mongoose");
 const app = express();
 
 app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 // ---------------------- Mongoose DB connect ----------------------
-// mongoose.connect("mongodb://localhost/dailyJournalDB", {
+// mongoose.connect('mongodb://localhost/dailyJournalDB', {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
 
 // ---------------------- Mongoose DB schema ----------------------
 // const postScheme = new mongoose.Schema({ title: String, content: String });
-// const Post = mongoose.model("Post", postScheme);
+// const Post = mongoose.model('Post', postScheme);
 
-const homeStartingContent = "Add '/compose' at the end of ☝🏻url to add a new post";
-const aboutContent = "Hi! This Daily Journal was made by Parv Garg 🤓 ";
-const contactContent = "Heya! Reach me at Parv3213@gmail.com";
+const homeStartingContent =
+  "Add '/compose' at the end of ☝🏻url to add a new post";
+const aboutContent = "Hi! This Daily Journal was made by Guru Sai Kumar 🤓 ";
+const contactContent = "Heya! Reach me at gurusaikumar2002@gmail.com";
 
-let posts=[];
+let posts = [];
 // ---------------------- Home Route ----------------------
 app.get("/", (req, res) => {
-//   Post.find({}, (e, foundPosts) => {
-    res.render("home", { content: homeStartingContent, posts: posts });
-//   });
+  //   Post.find({}, (e, foundPosts) => {
+  res.render("home", { content: homeStartingContent, posts: posts });
+  //   });
 });
 
 // ---------------------- About Route ----------------------
@@ -58,12 +60,13 @@ app.post("/compose", (req, res) => {
 });
 
 app.get("/posts/:postName", (req, res) => {
-  const postName = _.lowerCase(req.params.postName);
+  // const postName = _.lowerCase(req.params.postName);
+  const postName = (req.params.postName);
   posts.forEach((post) => {
-      if(post.title === postName){
-          res.render("post",post);
-      }
-  })
+    if (post.title === postName) {
+      res.render("post", post);
+    }
+  });
 });
 
 app.listen(process.env.PORT || 3000, function () {
