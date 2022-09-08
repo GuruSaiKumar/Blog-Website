@@ -33,3 +33,9 @@ body {
   background-image: linear-gradient(to right,#2c2669, #121220 );
 
 }
+.box{
+  display:flex;
+  /* align-items:center; */
+  justify-content:center;
+  margin:10px 0px;
+}

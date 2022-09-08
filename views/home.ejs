@@ -3,6 +3,17 @@
 <h1>Home</h1>
 <p><%= content %></p>
 
+<div class="container">
+  <div class="box">
+    <div class="search-bar">
+      <form>
+        <input type="text" placeholder="Search" size = "50">
+        <button><i class="bi bi-search"></i></button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <% for(let i = 0; i < posts.length ; i++){ %>
 <div class="card">
   <div class="card-header">
